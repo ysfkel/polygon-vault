@@ -88,7 +88,6 @@ describe("EthereumPolygonTransfer", function() {
         //calculate percentage deposit
         const addr = await this.deployer.getAddress()
         const x = await this._erc20Token.balanceOf(addr)
-        //console.log('xxx ',x.toString())
         const amount = 10000000
         const fee = (0.1*amount)/100;
         const depositAmount = amount - fee;
@@ -96,11 +95,6 @@ describe("EthereumPolygonTransfer", function() {
         await this._erc20Token.approve(this._erc20Predicate.address, amount)
         await this._ethPolygon.deposit(amount);
          expect(await this._erc20Token.balanceOf(this._erc20Predicate.address)).to.equal(depositAmount)
-        // await expect(this.stakingContract.connect(this.bob).deposit("0",amount)).to.emit(this.stakingContract, 'Deposit').withArgs(this.bob.address, '0', depositAmount )
-        // const factoryTokenAddress = await this.tokenFactory.getFactoryToken(this.lp.address)
-        // await expect(await this.tokenFactory.getMainToken(factoryTokenAddress)).to.equal(this.lp.address)
-        // const connectERC20Mock = this.ERC20Mock.attach(factoryTokenAddress)
-        // await expect(await connectERC20Mock.balanceOf(this.bob.address)).to.equal(depositAmount)
        });
     })
   
